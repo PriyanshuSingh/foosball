@@ -14,9 +14,11 @@ public class Screen {
 		}
 	}
 	
+	
 	public Screen(int w,int h){
-		this.w = w;
 		this.h = h;
+		this.w = w;
+		
 		pixels = new int[w*h];
 	}
 

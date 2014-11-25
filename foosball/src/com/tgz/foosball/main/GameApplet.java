@@ -4,6 +4,6 @@ import java.applet.Applet;
 
 public class GameApplet extends Applet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 }

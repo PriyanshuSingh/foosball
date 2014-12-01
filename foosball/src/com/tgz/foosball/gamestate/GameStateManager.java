@@ -20,15 +20,11 @@ public class GameStateManager {
         return currentState;
     }
 
-    private GameStateManager() {
+    public GameStateManager() {
         gameStates = new EnumMap<State, GameState>(State.class);
         gameStates.put(State.MENUSTATE, new MenuState(this));
         gameStates.put(State.PLAYSTATE, new PlayState(this));
         gameStates.put(State.PAUSESTATE, new PauseState(this));
-    }
-
-    public static GameStateManager getInstance() {
-        return gameStateManager;
     }
 
     public void render(Screen screen) {

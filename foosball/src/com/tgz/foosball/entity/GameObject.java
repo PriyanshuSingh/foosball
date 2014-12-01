@@ -15,12 +15,13 @@ public abstract class GameObject {
     public IntImage image;
 
     //position
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
 
     //speed
-    protected int velX;
-    protected int velY;
+    protected double velX;
+    protected double velY;
+    protected double speed;
 
     //collision box
     protected int width;
@@ -29,11 +30,11 @@ public abstract class GameObject {
     //input
     protected GameInput input;
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -46,11 +47,11 @@ public abstract class GameObject {
     }
 
     public void setX(int x) {
-        this.x = x;
+        this.x = (double)x;
     }
 
     public void setY(int y) {
-        this.y = y;
+        this.y = (double)y;
     }
 
     public void setWidth(int width) {
@@ -61,18 +62,28 @@ public abstract class GameObject {
         this.height = height;
     }
 
+    public double getVelX() {
+        return velX;
+    }
+
+    public double getVelY() {
+        return velY;
+    }
+
+    public void setVelX(int velX) {
+        this.velX = (double)velX;
+    }
+
+    public void setVelY(int velY) {
+        this.velY = (double)velY;
+    }
 
     public void tick() {
     }
 
     public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setSpeed(int velX, int velY) {
-        this.velX = velX;
-        this.velY = velY;
+        this.x = (double)x;
+        this.y = (double)y;
     }
 
     //check if necessary or not
@@ -85,31 +96,19 @@ public abstract class GameObject {
         return getRectangle().intersects(gameObject.getRectangle());
     }
 
-    public void render(int x, int y, Screen screen) {
+    public void render(double x, double y, Screen screen) {
         if (image != null) {
-            //System.out.println(image +" "+ image.getHEIGHT()+ " "+ image.getWIDTH()+" "+ x + " "+ y);
-            //image.test();
-            image.render(x, y, screen);
+            image.render((int)x, (int)y, screen);
         }
     }
 
-    public void setVelX(int velX) {
-        this.velX = velX;
+    public void render(Screen screen){
+        if(image != null){
+            image.render((int)this.x,(int)this.y,screen);
+        }
     }
 
-    public void setVelY(int velY) {
-        this.velY = velY;
-    }
-
-    public int getVelX() {
-        return velX;
-    }
-
-    public int getVelY() {
-        return velY;
-    }
-
-    public Rectangle getRectangle() {
+    private Rectangle getRectangle() {
         return new Rectangle(
                 (int) x - width / 2,
                 (int) y - height / 2,

@@ -19,17 +19,19 @@ public class Player extends GameObject {
         // set speed
         AI = team.AI;
         image = isAI() ? SpriteStore.PLAYER2 : SpriteStore.PLAYER;
-
+        this.team = team;
         this.playerBehaviour = playerBehaviour;
         double spacing = Game.HEIGHT/(playerBehaviour.getCount()+1);
         velX = 0;
         x = playerBehaviour.getplayerX();
         y = playerBehaviour.getMeanY(index);
+        //System.out.println(y);
         this.index = index;
         setMaxY((int)Math.abs(y+spacing));
         setMinY((int)Math.abs(y-spacing));
 
         if(!isAI()){
+          //  System.out.println(AI);
             input = team.input;
         }
 
@@ -43,6 +45,7 @@ public class Player extends GameObject {
     public void tick() {
         super.tick();
         if (!isAI()) {
+            //System.out.println(input+" "+AI);
             if (input.up.down && !input.down.down) {
 
             } else if (input.down.down && !input.up.down) {
@@ -60,6 +63,7 @@ public class Player extends GameObject {
 
         if (this.intersects(Ball.getBall())) {
             playerBehaviour.performAction();
+            System.out.println(playerBehaviour);
         }
 
     }

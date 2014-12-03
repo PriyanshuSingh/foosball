@@ -25,7 +25,9 @@ public class Team implements BallObserver{
     public Team(GameInput input,GoalPost oppositeTeamGoalPost){
         players = new Player[11];
         this.input =  input;
+        System.out.println("team input "+input+"hello");
         this.oppositeTeamGoalPost = oppositeTeamGoalPost;
+        this.directionAI = Direction.NONE;
     }
 
     public void init(boolean AI,int defenderCount, int midfielderCount, int attackerCount){
@@ -86,7 +88,7 @@ public class Team implements BallObserver{
 
         minX = 1000000;
         for (Player player: players) {
-            diff = player.playerBehaviour.getplayerX() - ball.getX();
+            diff = player.getX() - ball.getX();
             if (ball.getVelX() < 0) {
                 diff = -diff;
             }

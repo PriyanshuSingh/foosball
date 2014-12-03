@@ -22,10 +22,12 @@ public class GameStateManager {
     }
 
     public GameStateManager() {
+
         gameStates = new EnumMap<State, GameState>(State.class);
         gameStates.put(State.MENUSTATE, new MenuState(this));
         gameStates.put(State.PLAYSTATE, new PlayState(this));
         gameStates.put(State.PAUSESTATE, new PauseState(this));
+
     }
 
     public void render(Screen screen) {
@@ -44,12 +46,13 @@ public class GameStateManager {
     }
 
     public void setInput(GameInput input) {
-        this.input = input;
+        GameStateManager.input = input;
     }
 
     public GameInput getInput(){
         return input;
     }
+
     public void setState(State currentState) {
         this.currentState = currentState;
         gameStates.get(currentState).init();

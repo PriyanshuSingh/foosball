@@ -47,10 +47,10 @@ public class Game extends Canvas implements Runnable {
 
 
     public void init() {
+        GameStateManager.input = input;
         screen = new Screen(WIDTH, HEIGHT);
         background = SpriteStore.BACKGROUND;
         gameStateManager = new GameStateManager();
-        gameStateManager.setInput(input);
 
         gameStateManager.setState(State.PLAYSTATE);
         screen.setBackGroundColour(0xffff00ff);

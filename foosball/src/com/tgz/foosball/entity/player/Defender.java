@@ -38,12 +38,13 @@ public class Defender extends PlayerRole implements PlayerBehaviour {
 
     @Override
     public void performAction() {
+        System.out.println("defe");
         pass(getNextPlayer());
     }
 
     @Override
     public double getMeanY(int index) {
-        return index*(Game.HEIGHT/(team.midfielderCount+1));
+        return index*(Game.HEIGHT/(team.defenderCount+1));
     }
 
     @Override

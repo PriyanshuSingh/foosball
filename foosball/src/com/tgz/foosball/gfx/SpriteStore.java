@@ -22,7 +22,7 @@ public class SpriteStore {
         try {
             im = ImageIO.read(this.getClass().getResource("/spritee.png"));
             //im2 = ImageIO.read(this.getClass().getResource("/sprite.jpg"));
-            PLAYER = new IntImage(im.getSubimage(0, 0, 21, 36), 0xff000000);
+            PLAYER = new IntImage(im.getSubimage(0, 0, 21, 36));
             PLAYER2 = new IntImage(im.getSubimage(0, 36, 21, 36));
             BAR = new IntImage(im.getSubimage(66, 0, 6, 360));
             BALL = new IntImage(im.getSubimage(0, 72, 16, 16), 0xff000000);

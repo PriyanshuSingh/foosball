@@ -19,6 +19,7 @@ public class PlayState extends GameState implements GoalEventListener {
     public final static int GOAL_POST_OFFSET_TEAM1 = GoalPost.WIDTH/2;
     public final static int GOAL_POST_OFFSET_TEAM2 = Game.WIDTH - GOAL_POST_OFFSET_TEAM1;
     // dont touch as every where self goal is computed using this formula
+
     public PlayState(GameStateManager gsm) {
         super(gsm);
         teams = new Team[2];
@@ -44,9 +45,13 @@ public class PlayState extends GameState implements GoalEventListener {
     public void init() {
 
         //init ball here
+        ball.setPosition(320,180);
+        ball.setVelY(0);
+        ball.setVelX(-4);
+
         //gsm.getInfo(From MenuState)
-        teams[0].init(false, 2, 2, 2);
-        teams[1].init(true, 2, 2, 2);
+        teams[0].init(false, 3, 4, 3);
+        teams[1].init(true, 3, 4, 3);
 
     }
 
@@ -66,6 +71,7 @@ public class PlayState extends GameState implements GoalEventListener {
         ball.render(screen);
         for(Team team: teams){
             for(Player player: team.players){
+                //System.out.println(player.getX()+" "+player.getY());
                 player.render(screen);
             }
         }
@@ -81,10 +87,12 @@ public class PlayState extends GameState implements GoalEventListener {
     public void goalEventOccured(GoalEvent e) {
         if(((GoalPost)e.getSource()).getX() < Game.WIDTH/2 ){
             ball.setPosition(320,180);
-            ball.setVelX(8);
+            ball.setVelX(-8);
             ball.setVelY(0);
         }else {
-
+            ball.setPosition(320,180);
+            ball.setVelX(8);
+            ball.setVelY(0);
         }
     }
 }

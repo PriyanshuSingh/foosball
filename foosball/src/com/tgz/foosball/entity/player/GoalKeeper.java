@@ -21,7 +21,11 @@ public class GoalKeeper extends PlayerRole implements PlayerBehaviour {
 
     @Override
     public double getplayerX() {
-        return Game.WIDTH - (team.oppositeTeamGoalPost.getX() + (double)team.oppositeTeamGoalPost.getWidth()/2);
+        if(team.oppositeTeamGoalPost.getX() < Game.WIDTH/2){
+            return Game.WIDTH - team.oppositeTeamGoalPost.getX() - (double)team.oppositeTeamGoalPost.getWidth()/2;
+        }else {
+            return Game.WIDTH - team.oppositeTeamGoalPost.getX() + (double)team.oppositeTeamGoalPost.getWidth()/2;
+        }
     }
 
     @Override
@@ -31,6 +35,7 @@ public class GoalKeeper extends PlayerRole implements PlayerBehaviour {
 
     @Override
     public double getMeanY(int index) {
+     //   System.out.println(team.oppositeTeamGoalPost.getY()+"jj");
         return team.oppositeTeamGoalPost.getY();
     }
 

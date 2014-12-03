@@ -24,6 +24,7 @@ public class MidFielder extends PlayerRole implements PlayerBehaviour {
     public double getplayerX() {
         double x1 = team.oppositeTeamGoalPost.getX();
         double x2 = Game.WIDTH - x1;
+        System.out.println(x1+" "+x2);
         double barPos = 0;
         double totalSpace = Math.abs(x2-x1);
         barPos = totalSpace/(NO_POS_PLAYER*2 +1);

@@ -24,13 +24,15 @@ public class MidFielder extends PlayerRole implements PlayerBehaviour {
     public double getplayerX() {
         double x1 = team.oppositeTeamGoalPost.getX();
         double x2 = Game.WIDTH - x1;
-        System.out.println(x1+" "+x2);
+        //System.out.println(x1+" "+x2);
         double barPos = 0;
         double totalSpace = Math.abs(x2-x1);
         barPos = totalSpace/(NO_POS_PLAYER*2 +1);
-        barPos = 3*barPos + x2; // 3 define postion
+
         if(team.AI){
-            barPos = Game.WIDTH - barPos;
+            barPos = x2 - 3*barPos; // 3 define postion;
+        }else {
+            barPos = x2 + 3*barPos;
         }
         return barPos;
     }
@@ -58,5 +60,10 @@ public class MidFielder extends PlayerRole implements PlayerBehaviour {
     @Override
     public int getStartingIndex() {
         return team.defenderCount+1;
+    }
+
+    @Override
+    public int getSpeed() {
+        return 3;
     }
 }

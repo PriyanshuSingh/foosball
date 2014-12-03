@@ -29,16 +29,17 @@ public class Defender extends PlayerRole implements PlayerBehaviour {
         double barPos = 0;
         double totalSpace = Math.abs(x2-x1);
         barPos = totalSpace/(NO_POS_PLAYER*2 +1);
-        barPos = 1*barPos + x2;
         if(team.AI){
-            barPos = Game.WIDTH - barPos;
+            barPos = x2 - 1*barPos;
+        }else {
+            barPos = x2 + 1*barPos;
         }
         return barPos;
     }
 
     @Override
     public void performAction() {
-        System.out.println("defe");
+       // System.out.println("defe");
         pass(getNextPlayer());
     }
 
@@ -55,5 +56,10 @@ public class Defender extends PlayerRole implements PlayerBehaviour {
     @Override
     public int getStartingIndex() {
         return 1;
+    }
+
+    @Override
+    public int getSpeed() {
+        return 0;
     }
 }

@@ -27,9 +27,10 @@ public class Attacker extends PlayerRole  implements PlayerBehaviour {
         double barPos = 0;
         double totalSpace = Math.abs(x2-x1);
         barPos = totalSpace/(NO_POS_PLAYER*2 +1);
-        barPos = 5*barPos + x2;
         if(team.AI){
-            barPos = Game.WIDTH - barPos;
+            barPos = x2 - 5*barPos; // 3 define postion;
+        }else {
+            barPos = x2 + 5*barPos;
         }
         return barPos;
     }
@@ -53,5 +54,10 @@ public class Attacker extends PlayerRole  implements PlayerBehaviour {
     @Override
     public int getStartingIndex() {
         return team.midfielderCount+team.defenderCount+1;
+    }
+
+    @Override
+    public int getSpeed() {
+        return 0;
     }
 }

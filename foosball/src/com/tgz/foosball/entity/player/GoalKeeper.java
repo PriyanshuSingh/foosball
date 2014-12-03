@@ -48,4 +48,9 @@ public class GoalKeeper extends PlayerRole implements PlayerBehaviour {
     public int getStartingIndex() {
         return 0;
     }
+
+    @Override
+    public int getSpeed() {
+        return 0;
+    }
 }

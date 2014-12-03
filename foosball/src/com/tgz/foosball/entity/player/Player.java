@@ -47,23 +47,31 @@ public class Player extends GameObject {
         if (!isAI()) {
             //System.out.println(input+" "+AI);
             if (input.up.down && !input.down.down) {
-
+                velY = -playerBehaviour.getSpeed();
             } else if (input.down.down && !input.up.down) {
-
+                velY = +playerBehaviour.getSpeed();
+            }else{
+                velY = 0;
             }
         } else {
             if (team.directionAI == Direction.UP) {
+                velY = -playerBehaviour.getSpeed();
 
             } else if (team.directionAI == Direction.DOWN) {
+                velY = +playerBehaviour.getSpeed();
 
             } else {
-
+                velY = 0;
             }
+
+        }
+        if(y+velY - getHeight()/2>=minY && y+velY + getHeight()/2 <= maxY){
+            y += velY;
         }
 
         if (this.intersects(Ball.getBall())) {
             playerBehaviour.performAction();
-            System.out.println(playerBehaviour);
+            //System.out.println(playerBehaviour+" AI "+AI);
         }
 
     }

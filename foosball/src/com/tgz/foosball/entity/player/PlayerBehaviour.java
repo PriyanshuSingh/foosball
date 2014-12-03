@@ -20,4 +20,6 @@ public interface PlayerBehaviour {
     int getCount();
 
     int getStartingIndex();
+
+    int getSpeed();
 }

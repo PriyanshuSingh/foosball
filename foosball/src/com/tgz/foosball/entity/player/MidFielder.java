@@ -1,49 +1,61 @@
 package com.tgz.foosball.entity.player;
 
 import com.tgz.foosball.ashish.Team;
+import com.tgz.foosball.entity.Ball;
+import com.tgz.foosball.main.Game;
 
 /**
  * Created by priyanshu on 1/12/14.
  */
-public class MidFielder implements PlayerBehaviour {
+public class MidFielder extends PlayerRole implements PlayerBehaviour {
+
+
+    public MidFielder(Team team, Ball ball) {
+        super(team, ball);
+    }
 
     @Override
-    public Player getNextPlayer(Team team) {
-        return null;
+    public Player getNextPlayer() {
+        int nextIndex = RANDOM.nextInt(team.attackerCount) + team.midfielderCount + team.defenderCount + 1;
+        return team.players[nextIndex];
     }
 
     @Override
     public double getplayerX() {
-        return 0;
-    }
-
-    @Override
-    public int getCount() {
-        return 0;
+        double x1 = team.oppositeTeamGoalPost.getX();
+        double x2 = Game.WIDTH - x1;
+        double barPos = 0;
+        double totalSpace = Math.abs(x2-x1);
+        barPos = totalSpace/(NO_POS_PLAYER*2 +1);
+        barPos = 3*barPos + x2; // 3 define postion
+        if(team.AI){
+            barPos = Game.WIDTH - barPos;
+        }
+        return barPos;
     }
 
     @Override
     public void performAction() {
-
+        if(RANDOM.nextBoolean()) {
+            pass(getNextPlayer());
+        }else {
+            shoot();
+        }
     }
 
     @Override
-    public void shoot() {
-
+    public double getMeanY(int index) {
+        index = index - team.defenderCount;
+        return index*(Game.HEIGHT/(team.midfielderCount+1));
     }
 
     @Override
-    public void pass() {
-
-    }
-
-    @Override
-    public double getMeanY(int index, Team team) {
-        return 0;
+    public int getCount() {
+        return team.midfielderCount;
     }
 
     @Override
     public int getStartingIndex() {
-        return 0;
+        return team.defenderCount+1;
     }
 }

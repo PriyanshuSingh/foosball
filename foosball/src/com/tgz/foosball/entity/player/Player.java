@@ -16,30 +16,25 @@ public class Player extends GameObject {
     protected int index;
 
     public Player(PlayerBehaviour playerBehaviour, Team team, int index) {
+        // set speed
+        AI = team.AI;
+        image = isAI() ? SpriteStore.PLAYER2 : SpriteStore.PLAYER;
 
-        image = SpriteStore.PLAYER;
-
-
-
+        this.playerBehaviour = playerBehaviour;
         double spacing = Game.HEIGHT/(playerBehaviour.getCount()+1);
         velX = 0;
-        AI = team.AI;
         x = playerBehaviour.getplayerX();
-        y = playerBehaviour.getMeanY(index, team);
+        y = playerBehaviour.getMeanY(index);
         this.index = index;
         setMaxY((int)Math.abs(y+spacing));
         setMinY((int)Math.abs(y-spacing));
 
-        if(isAI()){
-
-            x = Game.WIDTH - x;
-        }else {
+        if(!isAI()){
             input = team.input;
         }
 
         setHeight(image.getHEIGHT());
         setWidth(image.getWIDTH());
-
     }
 
 
@@ -47,18 +42,18 @@ public class Player extends GameObject {
     @Override
     public void tick() {
         super.tick();
-        if(!isAI()) {
-            if(input.up.down && !input.down.down){
+        if (!isAI()) {
+            if (input.up.down && !input.down.down) {
 
-            }else if(input.down.down && !input.up.down){
+            } else if (input.down.down && !input.up.down) {
 
             }
-        }else{
-            if(team.directionAI == Direction.UP) {
+        } else {
+            if (team.directionAI == Direction.UP) {
 
-            }else if(team.directionAI == Direction.DOWN) {
+            } else if (team.directionAI == Direction.DOWN) {
 
-            }else {
+            } else {
 
             }
         }
@@ -68,6 +63,7 @@ public class Player extends GameObject {
         }
 
     }
+
 
     public double getX(){
         return x;

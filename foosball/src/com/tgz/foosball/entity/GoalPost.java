@@ -11,9 +11,10 @@ import javax.swing.event.EventListenerList;
  */
 public class GoalPost extends GameObject {
 
-    public static final int HEIGHT = 0;
-    public static final int WIDTH = 0;
-    public static final int Y = 0;
+    // set them
+    public static final int HEIGHT = 144;
+    public static final int WIDTH = 10;
+    public static final int Y = 180;
 
     private EventListenerList goalEventListenerList;
 
@@ -47,8 +48,18 @@ public class GoalPost extends GameObject {
     @Override
     public void tick() {
         super.tick();
+        if(this.intersects(Ball.getBall())){
+            fireGoalEvent(new GoalEvent(this));
+        }
 
     }
 
 
+    public double getY() {
+        return 0;
+    }
+
+    public double getX() {
+        return 0;
+    }
 }

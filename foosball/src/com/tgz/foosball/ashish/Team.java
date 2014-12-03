@@ -1,6 +1,7 @@
 package com.tgz.foosball.ashish;
 
 import com.tgz.foosball.entity.Ball;
+import com.tgz.foosball.entity.GoalPost;
 import com.tgz.foosball.entity.Observable;
 import com.tgz.foosball.entity.player.*;
 import com.tgz.foosball.main.Game;
@@ -15,14 +16,16 @@ public class Team implements BallObserver{
 
     public int defenderCount;
     public int midfielderCount;
-    public int AttackerCount;
+    public int attackerCount;
     public boolean AI;
     public GameInput input;
     public Direction directionAI;
+    public GoalPost oppositeTeamGoalPost;
 
-    public Team(GameInput input){
+    public Team(GameInput input,GoalPost oppositeTeamGoalPost){
         players = new Player[11];
         this.input =  input;
+        this.oppositeTeamGoalPost = oppositeTeamGoalPost;
     }
 
     public void init(boolean AI,int defenderCount, int midfielderCount, int attackerCount){
@@ -30,22 +33,29 @@ public class Team implements BallObserver{
 
         this.defenderCount = defenderCount;
         this.midfielderCount = midfielderCount;
-        this.AttackerCount = attackerCount;
+        this.attackerCount = attackerCount;
         this.AI = AI;
         if(AI){
             startObserving(Ball.getBall());
         }
 
-        players[0] = new Player(new GoalKeeper(),this,0);
-        PlayerBehaviour playerBehaviour = new Defender();
+        players[0] = new Player(new GoalKeeper(this,Ball.getBall()),this,0);
+
+        // Goalkeeper is special
+        players[0].setMinY((int) (oppositeTeamGoalPost.getY() - ((double)oppositeTeamGoalPost.getHeight())/2));
+        players[0].setMaxY((int) (oppositeTeamGoalPost.getY() + ((double)oppositeTeamGoalPost.getHeight())/2));
+
+
+        PlayerBehaviour playerBehaviour = new Defender(this,Ball.getBall());
+
         for(int i=1;i<=defenderCount;i++){
             players[i] = new Player(playerBehaviour,this,i);
         }
-        playerBehaviour = new MidFielder();
+        playerBehaviour = new MidFielder(this,Ball.getBall());
         for(int i=defenderCount+1;i<=defenderCount+midfielderCount;i++){
             players[i] = new Player(playerBehaviour,this,i);
         }
-        playerBehaviour = new Attacker();
+        playerBehaviour = new Attacker(this,Ball.getBall());
         for(int i=defenderCount+midfielderCount+1;i<=defenderCount+midfielderCount+attackerCount;i++){
             players[i] = new Player(playerBehaviour,this,i);
         }

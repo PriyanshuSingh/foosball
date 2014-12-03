@@ -1,44 +1,42 @@
 package com.tgz.foosball.entity.player;
 
 import com.tgz.foosball.ashish.Team;
+import com.tgz.foosball.entity.Ball;
+import com.tgz.foosball.main.Game;
 
 /**
  * Created by priyanshu on 3/12/14.
  */
-public class GoalKeeper implements PlayerBehaviour {
+public class GoalKeeper extends PlayerRole implements PlayerBehaviour {
+
+    public GoalKeeper(Team team, Ball ball) {
+        super(team, ball);
+    }
+
     @Override
-    public Player getNextPlayer(Team team) {
-        return null;
+    public Player getNextPlayer() {
+        int nextIndex = RANDOM.nextInt(team.defenderCount) + 1;
+        return team.players[nextIndex];
     }
 
     @Override
     public double getplayerX() {
-        return 0;
+        return Game.WIDTH - (team.oppositeTeamGoalPost.getX() + (double)team.oppositeTeamGoalPost.getWidth()/2);
     }
 
     @Override
     public void performAction() {
-
+        pass(getNextPlayer());
     }
 
     @Override
-    public void shoot() {
-
-    }
-
-    @Override
-    public void pass() {
-
-    }
-
-    @Override
-    public double getMeanY(int index, Team team) {
-        return 0;
+    public double getMeanY(int index) {
+        return team.oppositeTeamGoalPost.getY();
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 1;
     }
 
     @Override

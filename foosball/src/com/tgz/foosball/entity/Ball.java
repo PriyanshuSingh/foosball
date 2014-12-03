@@ -84,14 +84,19 @@ public class Ball extends GameObject implements Observable {
     }
     public void setVelX(double vel){
         velX = vel;
+        speed = Math.sqrt(velX*velX + velY*velY);
     }
 
     public void setVelY(double vel){
         velY = vel;
+        speed = Math.sqrt(velX*velX + velY*velY);
     }
 
-    public void setSpeed(double speed){
-        this.speed = speed;
+    public void setSpeed(double changedSpeed){
+        velX = (velX/this.speed)*changedSpeed;
+        velY = (velY/this.speed)*changedSpeed;
+        this.speed = changedSpeed;
+
     }
 
     @Override

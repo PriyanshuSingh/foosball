@@ -8,6 +8,8 @@ import com.tgz.foosball.main.Game;
 
 public class Player extends GameObject {
 
+    //player speed is not adjusted
+
     // constrained in different bars
     protected double maxY, minY;
     protected boolean AI;
@@ -27,8 +29,10 @@ public class Player extends GameObject {
         y = playerBehaviour.getMeanY(index);
         //System.out.println(y);
         this.index = index;
+
         setMaxY((int)Math.abs(y+spacing));
         setMinY((int)Math.abs(y-spacing));
+        System.out.println(minY+" "+maxY);
 
         if(!isAI()){
           //  System.out.println(AI);
@@ -61,7 +65,13 @@ public class Player extends GameObject {
                 velY = +playerBehaviour.getSpeed();
 
             } else {
-                velY = 0;
+                if(y - playerBehaviour.getMeanY(index) > -5){
+                    velY = +10;
+                }else if(y - playerBehaviour.getMeanY(index) < 5){
+                    velY = -10;
+                }else {
+                    velY = 0;
+                }
             }
 
         }

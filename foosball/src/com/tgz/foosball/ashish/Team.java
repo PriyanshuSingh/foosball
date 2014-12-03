@@ -116,17 +116,17 @@ public class Team implements BallObserver{
         int partition = yPos/spacingY;
 
         if(partition == 0 ){
-            if(yPos - players[startingIndex+partition].getY() < -epsilon/2) {
+            if(yPos - players[startingIndex+partition].getY() < -epsilon) {
                 directionAI = Direction.UP;
-            }else if(yPos - players[startingIndex+partition].getY() > epsilon/2){
+            }else if(yPos - players[startingIndex+partition].getY() > epsilon){
                 directionAI = Direction.DOWN;
             }else {
                 directionAI = Direction.NONE;
             }
         }else if(partition == count){
-            if(yPos - players[startingIndex+partition-1].getY() < -epsilon/2) {
+            if(yPos - players[startingIndex+partition-1].getY() < -epsilon) {
                 directionAI = Direction.UP;
-            }else if(yPos - players[startingIndex+partition-1].getY() > epsilon/2){
+            }else if(yPos - players[startingIndex+partition-1].getY() > epsilon){
                 directionAI = Direction.DOWN;
             }else {
                 directionAI = Direction.NONE;
@@ -136,15 +136,15 @@ public class Team implements BallObserver{
             double pos2 = players[startingIndex+partition].getX();
 
             if(Math.abs(pos1 - ball.getY()) > Math.abs(pos2 - ball.getY())) {
-                if(yPos - pos2 < -epsilon/2){
+                if(yPos - pos2 < -epsilon){
                     directionAI = Direction.UP;
-                }else if(yPos - pos2 > epsilon/2){
+                }else if(yPos - pos2 > epsilon){
                     directionAI = Direction.DOWN;
                 }else {
                     directionAI = Direction.DOWN;
                 }
             }else {
-                if(yPos - pos1 < -epsilon/2){
+                if(yPos - pos1 < -epsilon){
                     directionAI = Direction.UP;
                 }else if(yPos - pos1 > epsilon/2){
                     directionAI = Direction.DOWN;

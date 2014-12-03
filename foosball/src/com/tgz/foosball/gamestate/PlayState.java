@@ -47,7 +47,7 @@ public class PlayState extends GameState implements GoalEventListener {
         //init ball here
         ball.setPosition(320,180);
         ball.setVelY(0);
-        ball.setVelX(-4);
+        ball.setVelX(-2);
 
         //gsm.getInfo(From MenuState)
         teams[0].init(false, 3, 4, 3);

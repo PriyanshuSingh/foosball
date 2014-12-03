@@ -58,6 +58,6 @@ public class Attacker extends PlayerRole  implements PlayerBehaviour {
 
     @Override
     public int getSpeed() {
-        return 0;
+        return 3;
     }
 }

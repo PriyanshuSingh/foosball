@@ -51,6 +51,7 @@ public class Ball extends GameObject implements Observable {
         image = SpriteStore.BALL;
         setHeight(image.getHEIGHT());
         setWidth(image.getWIDTH());
+        ballObserverList = new ArrayList<BallObserver>();
     }
 
     public static Ball getBall() {
@@ -58,7 +59,7 @@ public class Ball extends GameObject implements Observable {
     }
 
     public static void setGame(Game game) {
-        ballObserverList = new ArrayList<BallObserver>();
+
         Ball.game = game;
     }
 
@@ -95,13 +96,13 @@ public class Ball extends GameObject implements Observable {
 
     @Override
     public void addObserver(BallObserver ballObserver) {
-
+        ballObserverList.add(ballObserver);
     }
 
     @Override
     public void notifyall() {
         for (BallObserver ballObserver : ballObserverList) {
-
+            ballObserver.update();
         }
     }
 

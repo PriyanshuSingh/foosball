@@ -49,7 +49,7 @@ public class Game extends Canvas implements Runnable {
     public void init() {
         screen = new Screen(WIDTH, HEIGHT);
         background = SpriteStore.BACKGROUND;
-        gameStateManager = GameStateManager.getInstance();
+        gameStateManager = new GameStateManager();
         gameStateManager.setInput(input);
 
         gameStateManager.setState(State.PLAYSTATE);

@@ -13,6 +13,11 @@ public class Defender implements PlayerBehaviour {
     }
 
     @Override
+    public double getplayerX() {
+        return 0;
+    }
+
+    @Override
     public void performAction() {
 
     }
@@ -25,5 +30,20 @@ public class Defender implements PlayerBehaviour {
     @Override
     public void pass() {
 
+    }
+
+    @Override
+    public double getMeanY(int index, Team team) {
+        return 0;
+    }
+
+    @Override
+    public int getStartingIndex() {
+        return 0;
+    }
+
+    @Override
+    public int getCount() {
+        return 0;
     }
 }

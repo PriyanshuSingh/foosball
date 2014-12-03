@@ -7,7 +7,10 @@ import com.tgz.foosball.ashish.Team;
  */
 public interface PlayerBehaviour {
 
+
     Player getNextPlayer(Team team);
+
+    double getplayerX();
 
     public void performAction();
 
@@ -15,4 +18,9 @@ public interface PlayerBehaviour {
 
     void pass();
 
+    double getMeanY(int index, Team team);
+
+    int getCount();
+
+    int getStartingIndex();
 }

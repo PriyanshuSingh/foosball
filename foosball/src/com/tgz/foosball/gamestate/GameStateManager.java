@@ -10,6 +10,7 @@ import com.tgz.foosball.main.GameInput;
 public class GameStateManager {
 
     private static final GameStateManager gameStateManager = new GameStateManager();
+
     public static GameInput input;
 
     private Map<State, GameState> gameStates;
@@ -46,6 +47,9 @@ public class GameStateManager {
         this.input = input;
     }
 
+    public GameInput getInput(){
+        return input;
+    }
     public void setState(State currentState) {
         this.currentState = currentState;
         gameStates.get(currentState).init();

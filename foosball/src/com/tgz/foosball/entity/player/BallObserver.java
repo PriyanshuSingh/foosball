@@ -5,5 +5,5 @@ package com.tgz.foosball.entity.player;
  */
 public interface BallObserver {
 
-
+    public void update();
 }

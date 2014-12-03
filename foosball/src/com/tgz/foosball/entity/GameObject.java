@@ -30,13 +30,6 @@ public abstract class GameObject {
     //input
     protected GameInput input;
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 
     public int getWidth() {
         return width;
@@ -44,14 +37,6 @@ public abstract class GameObject {
 
     public int getHeight() {
         return height;
-    }
-
-    public void setX(int x) {
-        this.x = (double)x;
-    }
-
-    public void setY(int y) {
-        this.y = (double)y;
     }
 
     public void setWidth(int width) {
@@ -62,21 +47,6 @@ public abstract class GameObject {
         this.height = height;
     }
 
-    public double getVelX() {
-        return velX;
-    }
-
-    public double getVelY() {
-        return velY;
-    }
-
-    public void setVelX(int velX) {
-        this.velX = (double)velX;
-    }
-
-    public void setVelY(int velY) {
-        this.velY = (double)velY;
-    }
 
     public void tick() {
     }
